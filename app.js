@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const moment = require("moment");
 
+require("domain").config();
+
 const fs = require("fs/promises");
 
 const authRouter = require("./src/routes/api/auth");
