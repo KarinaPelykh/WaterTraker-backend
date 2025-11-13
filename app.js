@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const moment = require("moment");
 
-require("domain").config();
+require("dotenv").config();
 
 const fs = require("fs/promises");
 
