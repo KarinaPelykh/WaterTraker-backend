@@ -8,6 +8,7 @@ const schemas = require("../../schemas/users");
 const signupValidateMiddleware = validateBody(schemas.userSignupSchema);
 const signinValidateMiddleware = validateBody(schemas.userSigninSchema);
 
-router.post("/signup", signupValidateMiddleware);
+router.post("/signup", signupValidateMiddleware, ctrl.signup);
+router.post("/signin", signinValidateMiddleware, ctrl.signin);
 
 module.exports = router;

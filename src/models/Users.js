@@ -6,8 +6,8 @@ const emailRegexp = require("../constants/user-constants");
 const userSchema = new Schema(
   {
     name: { type: String, require: true },
-    email: { type: String, require: true, match: emailRegexp },
-    password: { type: string, minlength: 6, require: true },
+    email: { type: String, require: true, unique: true, match: emailRegexp },
+    password: { type: String, minlength: 6, require: true },
   },
   { versionKey: false, timestamps: true }
 );

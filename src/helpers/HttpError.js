@@ -3,6 +3,7 @@ const errorStatus = {
   401: "Unauthorized",
   404: "Not found",
   500: "Server error",
+  409: "Conflict",
 };
 
 const HttpError = (status) => {
