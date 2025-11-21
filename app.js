@@ -1,9 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const moment = require("moment");
-
 require("dotenv").config();
-
 const fs = require("fs/promises");
 
 const authRouter = require("./src/routes/api/auth");
