@@ -2,7 +2,9 @@ const User = require("../models/Users");
 const HttpError = require("../helpers/HttpError");
 const ctrlWrapper = require("../helpers/ctrlWrapper");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
+const { JWT_SECRET } = process.env;
 const signup = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
@@ -27,8 +29,10 @@ const signin = async (req, res) => {
   if (!passwordCompare) {
     throw HttpError(401);
   }
-
-  const token = "l;af;sdf;ldf;";
+  const payload = {
+    id: user._id,
+  };
+  const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "23h" });
   res.status(201).json({ token });
 };
 
