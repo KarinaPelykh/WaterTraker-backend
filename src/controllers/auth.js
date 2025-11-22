@@ -5,11 +5,12 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const { JWT_SECRET } = process.env;
+
 const signup = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (user) {
-    throw HttpError(409);
+    throw HttpError(409, "Email already exists");
   }
 
   const hashPassword = await bcrypt.hash(password, 10);
@@ -27,16 +28,31 @@ const signin = async (req, res) => {
   const passwordCompare = await bcrypt.compare(password, user.password);
 
   if (!passwordCompare) {
-    throw HttpError(401);
+    throw HttpError(401, "Invalid password");
   }
   const payload = {
     id: user._id,
   };
   const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "23h" });
+  await User.findByIdAndUpdate(user._id, { token });
+
   res.status(201).json({ token });
+};
+
+const getCurrent = (req, res) => {
+  const { name, email } = req.user;
+  res.json({ name, email });
+};
+
+const signout = async (req, res) => {
+  const { _id } = req.user;
+  await User.findByIdAndUpdate(_id, { token: "" });
+  res.json({ message: "Signout success" });
 };
 
 module.exports = {
   signup: ctrlWrapper(signup),
   signin: ctrlWrapper(signin),
+  getCurrent: ctrlWrapper(getCurrent),
+  signout: ctrlWrapper(signout),
 };

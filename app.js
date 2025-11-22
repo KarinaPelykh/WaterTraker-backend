@@ -25,7 +25,8 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  res.status(err.status || 404).json({ message: err.message || "Not found" });
+  const { status = 500, message } = err;
+  res.status(status).json({ message });
 });
 
 module.exports = app;

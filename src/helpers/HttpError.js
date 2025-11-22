@@ -6,8 +6,8 @@ const errorStatus = {
   409: "Conflict",
 };
 
-const HttpError = (status) => {
-  const error = new Error(errorStatus[status]);
+const HttpError = (status, message = errorStatus[status]) => {
+  const error = new Error(message);
   error.status = status;
   return error;
 };
