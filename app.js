@@ -5,6 +5,7 @@ require("dotenv").config();
 const fs = require("fs/promises");
 
 const authRouter = require("./src/routes/api/auth");
+const userRouter = require("./src/routes/api/user");
 
 const app = express();
 app.use(cors());
@@ -19,6 +20,7 @@ app.use(async (req, res, next) => {
 });
 
 app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
 
 app.use((req, res, next) => {
   next();
