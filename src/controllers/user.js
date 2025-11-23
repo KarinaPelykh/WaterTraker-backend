@@ -63,9 +63,21 @@ const updateUserInfo = async (req, res) => {
   res.status(200).json({ user: { name, email } });
 };
 
+const addUserWaterRate = async (req, res) => {
+  const { gender, weight, activeTime } = req.body;
+  const { id } = req.user;
+  const waterRate =
+    gender === "woman"
+      ? Math.floor(weight * 0.03 + activeTime * 0.4)
+      : Math.floor(weight * 0.04 + activeTime * 0.6);
+  const response = await User.findByIdAndUpdate(id, { water: waterRate });
+  res.status(201).json({ water: waterRate });
+};
+
 module.exports = {
   getUser: ctrlWrapper(getUser),
   addUserAvatar: ctrlWrapper(addUserAvatar),
   updateAvatar: ctrlWrapper(updateAvatar),
   updateUserInfo: ctrlWrapper(updateUserInfo),
+  addUserWaterRate: ctrlWrapper(addUserWaterRate),
 };

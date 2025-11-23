@@ -10,6 +10,7 @@ const userSchema = new Schema(
     password: { type: String, minlength: 6, require: true },
     image: { type: String },
     token: { type: String },
+    water: { type: String },
   },
   { versionKey: false, timestamps: true }
 );
