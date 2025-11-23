@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const Joi = require("joi");
+
 const { handleValidateError, runUpdateValidators } = require("./hooks");
 const emailRegexp = require("../constants/user-constants");
 

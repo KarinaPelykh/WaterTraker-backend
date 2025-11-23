@@ -1,36 +1,71 @@
-const ctrlWrapper = require("../helpers/ctrlWrapper");
+const { ctrlWrapper, cloudinary } = require("../helpers");
+const fs = require("fs/promises");
 const User = require("../models/Users");
 const bcrypt = require("bcryptjs");
+
 const getUser = async (req, res) => {
   const { id } = req.user;
 
   const user = await User.findById(id);
-  res.status(200).json({ user });
+
+  const userInfo = {
+    id: user._id,
+    name: user.name,
+    email: user.email,
+    image: user.image,
+  };
+
+  res.status(200).json({ userInfo });
 };
 
-const updateAvatar = async (req, res) => {};
+const addUserAvatar = async (req, res) => {
+  const { id } = req.user;
+  const { path: filePath } = req.file;
+  const { url: avatar } = await cloudinary.uploader.upload(filePath, {
+    folder: "water-track",
+  });
+
+  await fs.unlink(filePath);
+  await User.findByIdAndUpdate(id, { image: avatar });
+
+  res.status(201).json({ message: "Image added successfully" });
+};
+
+const updateAvatar = async (req, res) => {
+  const { id } = req.user;
+  const { path: filePath } = req.file;
+  const { url: avatar } = await cloudinary.uploader.upload(filePath, {
+    folder: "water-track",
+  });
+
+  await fs.unlink(filePath);
+  await User.findByIdAndUpdate(id, { image: avatar });
+
+  res.status(200).json({ message: "Image update successfully" });
+};
 
 const updateUserInfo = async (req, res) => {
   const { name, email, password } = req.body;
   const { id } = req.user;
-  const updataInfo = {};
+  const updateInfo = {};
 
   if (name) {
-    updataInfo.name = name;
+    updateInfo.name = name;
   }
   if (email) {
-    updataInfo.email = email;
+    updateInfo.email = email;
   }
   if (password) {
-    updataInfo.password = await bcrypt.hash(password, 10);
+    updateInfo.password = await bcrypt.hash(password, 10);
   }
 
-  const user = await User.findByIdAndUpdate(id, updataInfo);
-  res.status(201).json({ user: { name, email } });
+  const user = await User.findByIdAndUpdate(id, updateInfo);
+  res.status(200).json({ user: { name, email } });
 };
 
 module.exports = {
   getUser: ctrlWrapper(getUser),
+  addUserAvatar: ctrlWrapper(addUserAvatar),
   updateAvatar: ctrlWrapper(updateAvatar),
   updateUserInfo: ctrlWrapper(updateUserInfo),
 };
