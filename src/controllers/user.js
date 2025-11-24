@@ -70,7 +70,7 @@ const addUserWaterRate = async (req, res) => {
     gender === "woman"
       ? Math.floor(weight * 0.03 + activeTime * 0.4)
       : Math.floor(weight * 0.04 + activeTime * 0.6);
-  const response = await User.findByIdAndUpdate(id, { water: waterRate });
+  await User.findByIdAndUpdate(id, { water: waterRate });
   res.status(201).json({ water: waterRate });
 };
 
