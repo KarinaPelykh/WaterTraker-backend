@@ -13,6 +13,7 @@ const getUser = async (req, res) => {
     name: user.name,
     email: user.email,
     image: user.image,
+    water: user.water,
   };
 
   res.status(200).json({ userInfo });
