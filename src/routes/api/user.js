@@ -10,12 +10,14 @@ const avatarValidateMiddleware = validateBody(schema.avatarSchema);
 const avatarUpdateValidateMiddleware = validateBody(schema.avatarUpdateSchema);
 const waterRateValidateMiddleware = validateBody(waterRateSchema);
 
-router.get("/", authenticate, ctrl.getUser);
+router.use(authenticate);
+
+router.get("/", ctrl.getUser);
 
 router.post(
   "/avatar",
   upload.single("avatar"),
-  authenticate,
+
   avatarValidateMiddleware,
   ctrl.addUserAvatar
 );
@@ -23,16 +25,16 @@ router.post(
 router.patch(
   "/avatar",
   upload.single("avatar"),
-  authenticate,
+
   avatarUpdateValidateMiddleware,
   ctrl.updateAvatar
 );
 
-router.patch("/", authenticate, ctrl.updateUserInfo);
+router.patch("/", ctrl.updateUserInfo);
 
 router.patch(
   "/water-rate",
-  authenticate,
+
   waterRateValidateMiddleware,
   ctrl.addUserWaterRate
 );

@@ -61,7 +61,7 @@ const updateUserInfo = async (req, res) => {
   }
 
   const user = await User.findByIdAndUpdate(id, updateInfo);
-  res.status(200).json({ user: { name, email } });
+  res.status(201).json({ user: { name, email } });
 };
 
 const addUserWaterRate = async (req, res) => {
@@ -71,6 +71,7 @@ const addUserWaterRate = async (req, res) => {
     gender === "woman"
       ? Math.floor(weight * 0.03 + activeTime * 0.4)
       : Math.floor(weight * 0.04 + activeTime * 0.6);
+
   await User.findByIdAndUpdate(id, { water: waterRate });
   res.status(201).json({ water: waterRate });
 };
