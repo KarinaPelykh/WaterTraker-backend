@@ -7,12 +7,14 @@ const fs = require("fs/promises");
 const authRouter = require("./src/routes/api/auth");
 const userRouter = require("./src/routes/api/user");
 const waterRouter = require("./src/routes/api/water");
+const swaggerDocs = require("./src/middlewares/swaggerDocs");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 
 app.use(async (req, res, next) => {
   const { method, url } = req;
@@ -25,6 +27,7 @@ app.use(async (req, res, next) => {
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/water", waterRouter);
+app.use("/api-docs", swaggerDocs())
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

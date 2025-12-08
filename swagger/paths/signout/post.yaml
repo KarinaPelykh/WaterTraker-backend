@@ -1,0 +1,23 @@
+tags:
+  - Auth
+summary: Sign out user from account
+operationId: signout
+description: "Sign out user from account"
+security:
+  - bearerAuth: []
+
+responses:
+  "200":
+    description: Sign out user
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Successfully signout a user!
+            data:
+              $ref: "../../components/schemas/signout.yaml"
+  "401":
+    $ref: "../../components/responses/401.yaml"

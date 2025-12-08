@@ -1,0 +1,12 @@
+type: object
+
+properties:
+  name:
+    description: User name
+    type: string
+    example: Adam Fremen
+  email:
+    description: User email
+    type: string
+    example: test@gmail.com
+

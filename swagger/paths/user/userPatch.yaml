@@ -1,0 +1,51 @@
+tags:
+  - Update user information 
+summary: Update user information
+operationId: userInformation
+description: Update and set information for current user
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+            example: Joe Doe
+          email:
+            type: string
+            example: test@gmail.com
+          password:
+            type: string
+            example: userpasswprs
+responses:
+  "201":
+    description: "Successfully updated user information"
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - message
+          - user
+          properties:
+            message:
+              type: string
+              example: User information updated successfully
+            user:
+              type: object
+              required:
+               - name
+               - email
+            properties:
+             name:
+              type: string
+              example: Joe Doe 
+            email:
+              type: string
+              example: text@gmail.com
+  "401":
+    $ref: "../../components/responses/401.yaml"

@@ -1,0 +1,26 @@
+tags:
+  - User
+summary: User information
+operationId: userInfo
+description: Get detailed information about current user
+security:
+  - bearerAuth: []
+responses:
+  "200":
+    description: "Get information about current user"
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - message
+            - data
+          properties:
+            message:
+              type: string
+              example: All information about current user
+            data:
+                $ref: "../../components/schemas/user.yaml"
+                
+  "401":
+    $ref: "../../components/responses/401.yaml"

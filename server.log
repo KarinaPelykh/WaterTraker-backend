@@ -20,3 +20,16 @@ GET /api/water/ 29-11-25_05:30:12
 PUT /api/water/692b1f8ba54d249a5ef73530 29-11-25_05:31:24
 GET /api/water/ 29-11-25_05:31:38
 POST /api/water/ 29-11-25_05:38:24
+GET / 08-12-25_10:41:12
+GET /favicon.ico 08-12-25_10:41:12
+GET /api-docs/ 08-12-25_10:44:46
+GET /api-docs 08-12-25_10:44:50
+GET /api-docs 08-12-25_10:45:35
+GET /api-docs 08-12-25_10:45:38
+GET /api-docs 08-12-25_10:47:13
+GET /api-docs/ 08-12-25_10:47:13
+GET /api-docs/swagger-ui.css 08-12-25_10:47:13
+GET /api-docs/swagger-ui-bundle.js 08-12-25_10:47:13
+GET /api-docs/swagger-ui-standalone-preset.js 08-12-25_10:47:13
+GET /api-docs/swagger-ui-init.js 08-12-25_10:47:13
+GET /api-docs/favicon-32x32.png 08-12-25_10:47:13
