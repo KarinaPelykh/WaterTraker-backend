@@ -7,7 +7,7 @@ const waterSchema = new Schema(
     owner: { type: Schema.Types.ObjectId, required: true, ref: "user" },
   },
 
-  { versionKey: false, timestamps: true }
+  { versionKey: false, timestamps: true },
 );
 
 const Water = model("water", waterSchema);

@@ -15,7 +15,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
 app.use(async (req, res, next) => {
   const { method, url } = req;
   const data = moment().format("DD-MM-YY_hh:mm:ss");
@@ -27,7 +26,7 @@ app.use(async (req, res, next) => {
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/water", waterRouter);
-app.use("/api-docs", swaggerDocs())
+app.use("/api-docs", swaggerDocs());
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

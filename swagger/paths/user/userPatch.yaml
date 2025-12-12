@@ -1,5 +1,5 @@
 tags:
-  - Update user information 
+  - Update user information
 summary: Update user information
 operationId: userInformation
 description: Update and set information for current user
@@ -30,7 +30,7 @@ responses:
           type: object
           required:
             - message
-          - user
+            - user
           properties:
             message:
               type: string
@@ -38,14 +38,14 @@ responses:
             user:
               type: object
               required:
-               - name
-               - email
-            properties:
-             name:
-              type: string
-              example: Joe Doe 
-            email:
-              type: string
-              example: text@gmail.com
+                - name
+                - email
+              properties:
+                name:
+                  type: string
+                  example: Joe Doe
+                email:
+                  type: string
+                  example: text@gmail.com
   "401":
     $ref: "../../components/responses/401.yaml"

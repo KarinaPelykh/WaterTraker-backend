@@ -12,7 +12,7 @@ const userSchema = new Schema(
     token: { type: String },
     water: { type: String },
   },
-  { versionKey: false, timestamps: true }
+  { versionKey: false, timestamps: true },
 );
 
 userSchema.post("save", handleValidateError);

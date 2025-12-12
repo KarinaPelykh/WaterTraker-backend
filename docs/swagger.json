@@ -30,9 +30,7 @@
   "paths": {
     "/signup": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Sign up user",
         "operationId": "signUpUser",
         "description": "Create a new user account",
@@ -43,11 +41,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "email",
-                  "password"
-                ],
+                "required": ["name", "email", "password"],
                 "properties": {
                   "name": {
                     "description": "User's name",
@@ -76,10 +70,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "message",
-                    "data"
-                  ],
+                  "required": ["message", "data"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -101,9 +92,7 @@
     },
     "/signin": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Sign in a user",
         "operationId": "signInUser",
         "description": "Sign in user account with email password and return JWT token",
@@ -114,10 +103,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "email",
-                  "password"
-                ],
+                "required": ["email", "password"],
                 "properties": {
                   "email": {
                     "description": "User's email",
@@ -141,11 +127,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
+                  "required": ["status", "message", "data"],
                   "properties": {
                     "status": {
                       "type": "integer",
@@ -172,9 +154,7 @@
     },
     "/signout": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Sign out user from account",
         "operationId": "signout",
         "description": "Sign out user from account",
@@ -211,9 +191,7 @@
     },
     "/current": {
       "get": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "signin current user without email and password",
         "operationId": "signInCurrentUser",
         "description": "Sign in current user",
@@ -251,9 +229,7 @@
     },
     "/user": {
       "get": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "User information",
         "operationId": "userInfo",
         "description": "Get detailed information about current user",
@@ -269,10 +245,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "message",
-                    "data"
-                  ],
+                  "required": ["message", "data"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -294,9 +267,7 @@
     },
     "/user/avatar": {
       "post": {
-        "tags": [
-          "User avatar"
-        ],
+        "tags": ["User avatar"],
         "summary": "Upload user avatar",
         "operationId": "userAvatar",
         "description": "Upload and set avatar for current user",
@@ -328,9 +299,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -347,9 +316,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Update user avatar"
-        ],
+        "tags": ["Update user avatar"],
         "summary": "Update user avatar",
         "operationId": "updateUserAvatar",
         "description": "Update and set avatar for current user",
@@ -381,9 +348,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",
@@ -444,19 +409,11 @@
       },
       "user": {
         "type": "object",
-        "required": [
-          "userInfo"
-        ],
+        "required": ["userInfo"],
         "properties": {
           "userInfo": {
             "type": "object",
-            "required": [
-              "id",
-              "name",
-              "email",
-              "image",
-              "water"
-            ],
+            "required": ["id", "name", "email", "image", "water"],
             "properties": {
               "id": {
                 "type": "string",
@@ -490,11 +447,7 @@
           "application/json": {
             "schema": {
               "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
+              "required": ["status", "message", "data"],
               "properties": {
                 "status": {
                   "type": "integer",
@@ -506,9 +459,7 @@
                 },
                 "data": {
                   "type": "object",
-                  "required": [
-                    "message"
-                  ],
+                  "required": ["message"],
                   "properties": {
                     "message": {
                       "type": "string",

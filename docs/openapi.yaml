@@ -28,12 +28,12 @@ paths:
     get:
       $ref: "../swagger/paths/current-user/get.yaml"
   /user:
-    get: 
+    get:
       $ref: "../swagger/paths/user/get.yaml"
   /user/avatar:
-    post: 
+    post:
       $ref: "../swagger/paths/user/post.yaml"
-    patch: 
+    patch:
       $ref: "../swagger/paths/user/patch.yaml"
 components:
   securitySchemes:

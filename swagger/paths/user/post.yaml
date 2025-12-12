@@ -1,5 +1,5 @@
 tags:
-  - User avatar 
+  - User avatar
 summary: Upload user avatar
 operationId: userAvatar
 description: Upload and set avatar for current user
@@ -24,11 +24,11 @@ responses:
           type: object
           required:
             - message
-            
+
           properties:
             message:
               type: string
               example: Image added successfully
-                 
+
   "401":
     $ref: "../../components/responses/401.yaml"

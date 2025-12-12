@@ -5,4 +5,3 @@ properties:
     description: User token
     type: string
     example: "jwt_token_here"
-  
