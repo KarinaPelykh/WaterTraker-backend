@@ -1,0 +1,38 @@
+tags:
+  - User
+summary: Update water rate
+operationId: userWaterRate
+description: Update water rate
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          activeTime:
+            type: number
+            example: 3
+          weight:
+            type: number
+            example: 60
+          gender:
+            type: string
+            example: female
+responses:
+  "201":
+    description: Successfully updated user information
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - water
+          properties:
+            water:
+              type: number
+              example: 2
+  "401":
+    $ref: ../../components/responses/401.yaml

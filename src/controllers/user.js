@@ -16,7 +16,7 @@ const getUser = async (req, res) => {
     water: user.water,
   };
 
-  res.status(200).json({ userInfo });
+  res.status(200).json(userInfo);
 };
 
 const addUserAvatar = async (req, res) => {

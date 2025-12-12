@@ -1,0 +1,19 @@
+tags:
+  - Water
+summary: Get all drunk Water
+operationId: getWater
+description: Get all amount drunk Water
+security:
+  - bearerAuth: []
+responses:
+  "200":
+    description: "List of all drunk water entries"
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: "../../components/schemas/water.yaml"
+
+  "401":
+    $ref: "../../components/responses/401.yaml"

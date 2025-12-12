@@ -1,5 +1,5 @@
 tags:
-  - Update user avatar
+  - User
 summary: Update user avatar
 operationId: updateUserAvatar
 description: Update and set avatar for current user

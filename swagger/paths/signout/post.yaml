@@ -16,8 +16,6 @@ responses:
           properties:
             message:
               type: string
-              example: Successfully signout a user!
-            data:
-              $ref: "../../components/schemas/signout.yaml"
+              example: "Signout success"
   "401":
     $ref: "../../components/responses/401.yaml"

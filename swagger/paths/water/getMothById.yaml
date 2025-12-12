@@ -1,0 +1,55 @@
+tags:
+  - Water
+summary: Get water month by Id
+operationId: getWaterMonthById
+description: Get water month by Id
+security:
+  - bearerAuth: []
+parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: string
+    description: ID of the water resource
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: string
+        required:
+          - id
+        properties:
+          id:
+            type: string
+            example: 65e4decdd286b30065d54af9
+responses:
+  "200":
+    description: "Get water"
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - percent
+            - list
+            - dailyNormWater
+            - date
+          properties:
+            dailyNormWater:
+              type: number
+              example: 2
+            date:
+              type: string
+              format: date
+            percent:
+              type: number
+              example: 100
+            list:
+              type: array
+              items:
+              $ref: "../../components/schemas/water.yaml"
+
+  "401":
+    $ref: "../../components/responses/401.yaml"

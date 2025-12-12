@@ -1,0 +1,9 @@
+type: object
+
+properties:
+  time:
+    type: string
+    example: "10:20"
+  amount:
+    type: number
+    example: 200

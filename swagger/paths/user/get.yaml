@@ -11,16 +11,7 @@ responses:
     content:
       application/json:
         schema:
-          type: object
-          required:
-            - message
-            - data
-          properties:
-            message:
-              type: string
-              example: All information about current user
-            data:
-              $ref: "../../components/schemas/user.yaml"
+          $ref: "../../components/schemas/user.yaml"
 
   "401":
     $ref: "../../components/responses/401.yaml"

@@ -33,15 +33,6 @@ responses:
     content:
       application/json:
         schema:
-          type: object
-          required:
-            - message
-            - data
-          properties:
-            message:
-              type: string
-              example: Successfully created a new user!
-            data:
-              $ref: ../../components/schemas/signup.yaml
+          $ref: ../../components/schemas/signup.yaml
   "401":
     $ref: "../../components/responses/401.yaml"

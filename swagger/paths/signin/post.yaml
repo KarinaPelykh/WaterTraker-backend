@@ -31,18 +31,11 @@ responses:
         schema:
           type: object
           required:
-            - status
-            - message
-            - data
+            - token
           properties:
-            status:
-              type: integer
-              example: 201
-            message:
+            token:
               type: string
-              example: Successfully signed in a user!
-            data:
-              $ref: ../../components/schemas/signin.yaml
+              example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
   "401":
     description: Unauthorized, invalid email or password
     $ref: "../../components/responses/401.yaml"

@@ -25,18 +25,12 @@ router.post(
 router.patch(
   "/avatar",
   upload.single("avatar"),
-
   avatarUpdateValidateMiddleware,
   ctrl.updateAvatar,
 );
 
 router.patch("/", ctrl.updateUserInfo);
 
-router.patch(
-  "/water-rate",
-
-  waterRateValidateMiddleware,
-  ctrl.addUserWaterRate,
-);
+router.patch("/water-rate", waterRateValidateMiddleware, ctrl.addUserWaterRate);
 
 module.exports = router;

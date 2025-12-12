@@ -1,0 +1,42 @@
+tags:
+  - Water
+summary: Delete water
+operationId: deleteWater
+deprecated: false
+security:
+  - bearerAuth: []
+parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: string
+    description: ID of the water resource
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: string
+        required:
+          - id
+        properties:
+          id:
+            type: string
+            example: 65e4decdd286b30065d54af9
+responses:
+  "200":
+    description: "Deleted successfully"
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: "Delete success"
+
+  "401":
+    $ref: "../../components/responses/401.yaml"
+  "404":
+    description: Resource not found

@@ -19,7 +19,8 @@ const addConsumedWater = async (req, res) => {
 const updateByID = async (req, res) => {
   const { id } = req.params;
   const response = await Water.findByIdAndUpdate(id, req.body, { new: true });
-  res.json(response);
+  const { time, amount } = response;
+  res.json({ time, amount });
 };
 
 const deleteSign = async (req, res) => {
@@ -38,6 +39,7 @@ const usedWaterByToday = async (req, res) => {
     startOfDay: new Date(),
     endOfDay: new Date(),
   };
+
   startOfDay.setHours(0, 0, 0, 0);
   endOfDay.setHours(23, 59, 59, 999);
 
@@ -52,6 +54,7 @@ const usedWaterByToday = async (req, res) => {
   if (!user || !user.water) {
     throw HttpError(404);
   }
+
   const percent = (liters / Number(user.water)) * 100;
   res.json({ percent: Math.round(percent), list: data });
 };

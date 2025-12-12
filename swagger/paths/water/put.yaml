@@ -1,0 +1,39 @@
+tags:
+  - Water
+summary: Update water
+operationId: updatedWaterObject
+description: Update some value in object water
+security:
+  - bearerAuth: []
+parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: string
+    description: ID of the water resource
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - time
+          - amount
+        properties:
+          time:
+            type: string
+            example: "10:20"
+          amount:
+            type: number
+            example: 200
+responses:
+  "201":
+    description: Successful update
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/water.yaml
+  "401":
+    $ref: "../../components/responses/401.yaml"

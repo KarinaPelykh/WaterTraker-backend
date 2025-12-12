@@ -1,0 +1,47 @@
+tags:
+  - Water
+summary: Get water by Id
+operationId: getWaterById
+description: Get today's consumed water percentage
+security:
+  - bearerAuth: []
+parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: string
+    description: ID of the water resource
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: string
+        required:
+          - id
+        properties:
+          id:
+            type: string
+            example: 65e4decdd286b30065d54af9
+responses:
+  "200":
+    description: "Get today's consumed water percentage"
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - percent
+            - list
+          properties:
+            percent:
+              type: number
+              example: 100
+            list:
+              type: array
+              items:
+              $ref: "../../components/schemas/water.yaml"
+
+  "401":
+    $ref: "../../components/responses/401.yaml"

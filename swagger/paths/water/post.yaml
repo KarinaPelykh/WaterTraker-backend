@@ -1,0 +1,35 @@
+tags:
+  - Water
+summary: Add water
+operationId: addWater
+description: Add amount drunk water
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - amount
+          - time
+        properties:
+          amount:
+            type: number
+            example: 200
+          time:
+            type: string
+            example: "10:20"
+
+responses:
+  "201":
+    description: "Add water"
+    content:
+      application/json:
+        schema:
+          type: string
+          example: Success
+
+  "401":
+    $ref: "../../components/responses/401.yaml"
