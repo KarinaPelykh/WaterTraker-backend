@@ -44,16 +44,10 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "name",
                   "email",
                   "password"
                 ],
                 "properties": {
-                  "name": {
-                    "description": "User's name",
-                    "type": "string",
-                    "example": "John Doe"
-                  },
                   "email": {
                     "description": "User's email",
                     "type": "string",
@@ -890,11 +884,6 @@
       "signup": {
         "type": "object",
         "properties": {
-          "name": {
-            "description": "User name",
-            "type": "string",
-            "example": "Adam Fremen"
-          },
           "email": {
             "description": "User email",
             "type": "string",
