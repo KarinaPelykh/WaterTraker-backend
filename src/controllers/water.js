@@ -61,7 +61,7 @@ const usedWaterByToday = async (req, res) => {
 
 const usedWaterByMonth = async (req, res) => {
   const { id } = req.params;
-  const { date } = req.body;
+  const { date } = req.query;
 
   const [year, month] = date.split(".");
   const monthIndex = Number(month) - 1;
@@ -73,7 +73,6 @@ const usedWaterByMonth = async (req, res) => {
   }
 
   const result = [];
-
   for (let day = 1; day <= dayInMonth; day++) {
     const start = new Date(year, monthIndex, day, 0, 0, 0, 0);
     const end = new Date(year, monthIndex, day, 23, 59, 59, 999);

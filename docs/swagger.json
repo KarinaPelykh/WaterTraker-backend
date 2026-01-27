@@ -11,10 +11,10 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "https://watertraker-backend.onrender.com"
     },
     {
-      "url": "https://example.com/api/v1"
+      "url": "https://watertraker-backend.onrender.com/api/auth"
     }
   ],
   "tags": [
