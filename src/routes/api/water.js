@@ -14,7 +14,7 @@ router.get("/", ctrl.getAll);
 router.post("/", validateWater, ctrl.addConsumedWater);
 router.put("/:id", isValid, validateWaterUpdate, ctrl.updateByID);
 router.delete("/:id", isValid, ctrl.deleteSign);
-router.get("/:id", isValid, ctrl.usedWaterByToday);
-router.get("/month/:id", isValid, ctrl.usedWaterByMonth);
+router.get("/today", isValid, ctrl.usedWaterByToday);
+router.get("/month", isValid, ctrl.usedWaterByMonth);
 
 module.exports = router;

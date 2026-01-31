@@ -33,7 +33,7 @@ const deleteSign = async (req, res) => {
 };
 
 const usedWaterByToday = async (req, res) => {
-  const { id } = req.params;
+  const { _id: owner } = req.user;
 
   const { startOfDay, endOfDay } = {
     startOfDay: new Date(),
@@ -44,13 +44,14 @@ const usedWaterByToday = async (req, res) => {
   endOfDay.setHours(23, 59, 59, 999);
 
   const data = await Water.find({
+    owner,
     createdAt: { $gte: startOfDay, $lte: endOfDay },
   });
 
   const total = data.reduce((sum, item) => (sum += item.amount), 0);
   const liters = total / 1000;
 
-  const user = await User.findById(id);
+  const user = await User.findById(owner);
   if (!user || !user.water) {
     throw HttpError(404);
   }
@@ -60,7 +61,6 @@ const usedWaterByToday = async (req, res) => {
 };
 
 const usedWaterByMonth = async (req, res) => {
-  // const { id } = req.params;
   const { _id: owner } = req.user;
   const { date } = req.query;
   const [year, month] = date.split(".");
