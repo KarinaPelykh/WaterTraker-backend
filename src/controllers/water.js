@@ -61,8 +61,8 @@ const usedWaterByToday = async (req, res) => {
 
 const usedWaterByMonth = async (req, res) => {
   // const { id } = req.params;
-  const { date } = req.query;
   const { _id: owner } = req.user;
+  const { date } = req.query;
   const [year, month] = date.split(".");
   const monthIndex = Number(month) - 1;
   const dayInMonth = new Date(Number(year), monthIndex + 1, 0).getDate();
@@ -78,6 +78,7 @@ const usedWaterByMonth = async (req, res) => {
     const end = new Date(year, monthIndex, day, 23, 59, 59, 999);
 
     const data = await Water.find({
+      owner,
       createdAt: { $gte: start, $lte: end },
     });
 
