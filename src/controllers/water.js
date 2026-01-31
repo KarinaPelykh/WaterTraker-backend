@@ -60,14 +60,14 @@ const usedWaterByToday = async (req, res) => {
 };
 
 const usedWaterByMonth = async (req, res) => {
-  const { id } = req.params;
+  // const { id } = req.params;
   const { date } = req.query;
-
+  const { _id: owner } = req.user;
   const [year, month] = date.split(".");
   const monthIndex = Number(month) - 1;
   const dayInMonth = new Date(Number(year), monthIndex + 1, 0).getDate();
 
-  const user = await User.findById(id);
+  const user = await User.findById(owner);
   if (!user || !user.water) {
     throw HttpError(404);
   }

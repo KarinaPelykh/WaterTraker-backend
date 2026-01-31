@@ -9,10 +9,11 @@ const { JWT_SECRET } = process.env;
 const signup = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
+
   if (user) {
     throw HttpError(409, "Email already exists");
   }
-
+  // you must do email verification to confirm eligible using application by user
   const hashPassword = await bcrypt.hash(password, 10);
   const newUser = await User.create({ ...req.body, password: hashPassword });
   res.status(201).json({ email: newUser.email });
@@ -33,6 +34,7 @@ const signin = async (req, res) => {
   const payload = {
     id: user._id,
   };
+
   const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "23h" });
   await User.findByIdAndUpdate(user._id, { token });
 
@@ -40,8 +42,9 @@ const signin = async (req, res) => {
 };
 
 const getCurrent = (req, res) => {
-  const { name, email } = req.user;
-  res.json({ name, email });
+  // name was deleted because it does exist on frontend
+  const { email } = req.user;
+  res.json({ email });
 };
 
 const signout = async (req, res) => {
