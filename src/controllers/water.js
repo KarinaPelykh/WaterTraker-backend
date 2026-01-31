@@ -3,11 +3,11 @@ const { HttpError, ctrlWrapper } = require("../helpers");
 const User = require("../models/Users");
 const Water = require("../models/Water");
 
-const getAll = async (req, res) => {
-  const { _id: owner } = req.user;
-  const date = await Water.find({ owner });
-  res.status(200).json(date);
-};
+// const getAll = async (req, res) => {
+//   const { _id: owner } = req.user;
+//   const date = await Water.find({ owner });
+//   res.status(200).json(date);
+// };
 
 const addConsumedWater = async (req, res) => {
   const { _id: owner } = req.user;
@@ -99,7 +99,7 @@ const usedWaterByMonth = async (req, res) => {
 
 module.exports = {
   addConsumedWater: ctrlWrapper(addConsumedWater),
-  getAll: ctrlWrapper(getAll),
+  // getAll: ctrlWrapper(getAll),
   updateByID: ctrlWrapper(updateByID),
   deleteSign: ctrlWrapper(deleteSign),
   usedWaterByToday: ctrlWrapper(usedWaterByToday),

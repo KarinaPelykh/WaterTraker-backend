@@ -10,11 +10,11 @@ const validateWaterUpdate = validateBody(schemas.updateWaterRecordSchema);
 
 router.use(authenticate);
 
-router.get("/", ctrl.getAll);
+// router.get("/", ctrl.getAll);
 router.post("/", validateWater, ctrl.addConsumedWater);
 router.put("/:id", isValid, validateWaterUpdate, ctrl.updateByID);
 router.delete("/:id", isValid, ctrl.deleteSign);
-router.get("/today", isValid, ctrl.usedWaterByToday);
-router.get("/month", isValid, ctrl.usedWaterByMonth);
+router.get("/today", ctrl.usedWaterByToday);
+router.get("/month", ctrl.usedWaterByMonth);
 
 module.exports = router;

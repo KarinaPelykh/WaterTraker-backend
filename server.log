@@ -9,3 +9,14 @@ GET /api/water/month/697e56c07d7d22768199511c?date=2026.01 31-01-26_09:08:18
 GET /api/water/month?date=2026.01 31-01-26_09:08:58
 GET /api/water/month?date=2026.01 31-01-26_09:09:14
 GET /api/water/month/697e56c07d7d22768199511c?date=2026.01 31-01-26_09:09:31
+GET /api/water/month?date=2026.01 31-01-26_09:21:36
+GET /api/water/month?date=2026.01 31-01-26_09:21:52
+GET /api/water/today 31-01-26_09:23:54
+GET /api/water/today 31-01-26_09:23:55
+GET /api/water 31-01-26_09:24:28
+GET /api/water/today 31-01-26_09:26:10
+GET /api/water/today 31-01-26_09:27:33
+GET /api/water/today 31-01-26_09:29:33
+GET /api/water/today 31-01-26_09:30:18
+GET /api/water/month 31-01-26_09:30:31
+GET /api/water/month?date=2026.01 31-01-26_09:31:05
