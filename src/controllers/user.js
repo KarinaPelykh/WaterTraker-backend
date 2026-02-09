@@ -1,4 +1,4 @@
-const { ctrlWrapper, cloudinary } = require("../helpers");
+const { ctrlWrapper, cloudinary, HttpError } = require("../helpers");
 const fs = require("fs/promises");
 const User = require("../models/Users");
 const bcrypt = require("bcryptjs");
@@ -45,25 +45,6 @@ const updateAvatar = async (req, res) => {
   res.status(200).json({ message: "Image update successfully" });
 };
 
-const updateUserInfo = async (req, res) => {
-  const { name, email, password } = req.body;
-  const { id } = req.user;
-  const updateInfo = {};
-
-  if (name) {
-    updateInfo.name = name;
-  }
-  if (email) {
-    updateInfo.email = email;
-  }
-  if (password) {
-    updateInfo.password = await bcrypt.hash(password, 10);
-  }
-
-  const user = await User.findByIdAndUpdate(id, updateInfo);
-  res.status(201).json({ user: { name, email } });
-};
-
 const addUserWaterRate = async (req, res) => {
   const { gender, weight, activeTime } = req.body;
   const { id } = req.user;
@@ -74,6 +55,44 @@ const addUserWaterRate = async (req, res) => {
 
   await User.findByIdAndUpdate(id, { water: waterRate });
   res.status(201).json({ water: waterRate });
+};
+
+const updateUserInfo = async (req, res) => {
+  const { name, email, currentPassword, newPassword } = req.body;
+
+  const { _id: owner } = req.user;
+
+  const updateInfo = {};
+
+  if (name) updateInfo.name = name;
+
+  if (email) updateInfo.email = email;
+
+  if (currentPassword) {
+    const user = await User.findById(owner);
+
+    if (!user) {
+      throw new HttpError(401);
+    }
+
+    const compare = await bcrypt.compare(currentPassword, user.password);
+
+    if (!compare) {
+      throw new HttpError(401, "Invalid password");
+    }
+
+    if (!newPassword) {
+      throw new HttpError(400, "New password is required to make changes");
+    }
+
+    updateInfo.password = await bcrypt.hash(newPassword, 10);
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(owner, updateInfo, {
+    new: true,
+  });
+
+  res.status(201).json({ email: updatedUser.email });
 };
 
 module.exports = {

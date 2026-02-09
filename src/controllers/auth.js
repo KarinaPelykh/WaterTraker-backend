@@ -31,6 +31,7 @@ const signin = async (req, res) => {
   if (!passwordCompare) {
     throw HttpError(401, "Invalid password");
   }
+
   const payload = {
     id: user._id,
   };
