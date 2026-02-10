@@ -14,6 +14,7 @@ const getUser = async (req, res) => {
     email: user.email,
     image: user.image,
     water: user.water,
+    gender: user.gender,
   };
 
   res.status(200).json(userInfo);
