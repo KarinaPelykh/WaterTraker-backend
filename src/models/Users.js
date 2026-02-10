@@ -9,6 +9,7 @@ const userSchema = new Schema(
     email: { type: String, require: true, unique: true, match: emailRegexp },
     password: { type: String, minlength: 6, require: true },
     image: { type: String },
+    gender: { type: String },
     token: { type: String },
     water: { type: String },
   },
