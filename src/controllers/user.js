@@ -56,7 +56,7 @@ const addUserWaterRate = async (req, res) => {
       ? Math.floor(weight * 0.03 + activeTime * 0.4)
       : Math.floor(weight * 0.04 + activeTime * 0.6);
 
-  await User.findByIdAndUpdate(owner, { water: waterRate });
+  await User.findByIdAndUpdate(owner, { water: waterRate, gender });
   res.status(201).json({ water: waterRate });
 };
 
