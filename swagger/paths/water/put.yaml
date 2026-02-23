@@ -5,13 +5,6 @@ operationId: updatedWaterObject
 description: Update some value in object water
 security:
   - bearerAuth: []
-parameters:
-  - name: id
-    in: path
-    required: true
-    schema:
-      type: string
-    description: ID of the water resource
 requestBody:
   required: true
   content:

@@ -10,6 +10,7 @@ properties:
       - email
       - image
       - water
+      - gender
     properties:
       id:
         type: string
@@ -26,3 +27,6 @@ properties:
       water:
         type: string
         example: "1"
+      gender:
+        type: string
+        example: "male"

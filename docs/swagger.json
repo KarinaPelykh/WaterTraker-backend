@@ -2,25 +2,22 @@
   "openapi": "3.1.0",
   "info": {
     "version": "1.0.0",
-    "title": "Water traker",
+    "title": "Water tracker",
     "license": {
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "description": "This is a documentation of Water traker website"
+    "description": "This is a documentation of Water tracker website"
   },
   "servers": [
     {
       "url": "https://watertraker-backend.onrender.com"
-    },
-    {
-      "url": "https://watertraker-backend.onrender.com/api/auth"
     }
   ],
   "tags": [
     {
-      "name": "Water traker",
-      "description": "Operations about Water traker."
+      "name": "Water tracker",
+      "description": "Operations about Water tracker."
     },
     {
       "name": "Auth",
@@ -183,7 +180,7 @@
         "tags": [
           "Auth"
         ],
-        "summary": "signin current user without email and password",
+        "summary": "Signin current user without email and password",
         "operationId": "signInCurrentUser",
         "description": "Sign in current user",
         "security": [
@@ -316,8 +313,7 @@
                   }
                 }
               }
-            },
-            "$ref": "#/components/responses/401"
+            }
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -497,28 +493,49 @@
       }
     },
     "/water": {
-      "get": {
+      "put": {
         "tags": [
           "Water"
         ],
-        "summary": "Get all drunk Water",
-        "operationId": "getWater",
-        "description": "Get all amount drunk Water",
+        "summary": "Update water",
+        "operationId": "updatedWaterObject",
+        "description": "Update some value in object water",
         "security": [
           {
             "bearerAuth": []
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "time",
+                  "amount"
+                ],
+                "properties": {
+                  "time": {
+                    "type": "string",
+                    "example": "10:20"
+                  },
+                  "amount": {
+                    "type": "number",
+                    "example": 200
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
-          "200": {
-            "description": "List of all drunk water entries",
+          "201": {
+            "description": "Successful update",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/water"
-                  }
+                  "$ref": "#/components/schemas/water"
                 }
               }
             }
@@ -583,142 +600,6 @@
       }
     },
     "/water/{id}": {
-      "get": {
-        "tags": [
-          "Water"
-        ],
-        "summary": "Get water by Id",
-        "operationId": "getWaterById",
-        "description": "Get today's consumed water percentage",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "ID of the water resource"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "string",
-                "required": [
-                  "id"
-                ],
-                "properties": {
-                  "id": {
-                    "type": "string",
-                    "example": "65e4decdd286b30065d54af9"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Get today's consumed water percentage",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "percent",
-                    "list"
-                  ],
-                  "properties": {
-                    "percent": {
-                      "type": "number",
-                      "example": 100
-                    },
-                    "list": {
-                      "type": "array",
-                      "items": null,
-                      "$ref": "#/components/schemas/water"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Water"
-        ],
-        "summary": "Update water",
-        "operationId": "updatedWaterObject",
-        "description": "Update some value in object water",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "ID of the water resource"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "time",
-                  "amount"
-                ],
-                "properties": {
-                  "time": {
-                    "type": "string",
-                    "example": "10:20"
-                  },
-                  "amount": {
-                    "type": "number",
-                    "example": 200
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Successful update",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/water"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
-          }
-        }
-      },
       "delete": {
         "tags": [
           "Water"
@@ -787,7 +668,70 @@
         }
       }
     },
-    "/water/month/{id}": {
+    "/water/today": {
+      "get": {
+        "tags": [
+          "Water"
+        ],
+        "summary": "Get water by Id",
+        "operationId": "getWaterById",
+        "description": "Get today's consumed water percentage",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "example": "65e4decdd286b30065d54af9"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Get today's consumed water percentage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "percent",
+                    "list"
+                  ],
+                  "properties": {
+                    "percent": {
+                      "type": "number",
+                      "example": 100
+                    },
+                    "list": {
+                      "type": "array",
+                      "$ref": "#/components/schemas/water"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
+      }
+    },
+    "/water/month": {
       "get": {
         "tags": [
           "Water"
@@ -798,17 +742,6 @@
         "security": [
           {
             "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "ID of the water resource"
           }
         ],
         "requestBody": {
@@ -904,7 +837,8 @@
               "name",
               "email",
               "image",
-              "water"
+              "water",
+              "gender"
             ],
             "properties": {
               "id": {
@@ -926,6 +860,10 @@
               "water": {
                 "type": "string",
                 "example": "1"
+              },
+              "gender": {
+                "type": "string",
+                "example": "male"
               }
             }
           }

@@ -1,19 +1,18 @@
 openapi: 3.1.0
 info:
   version: 1.0.0
-  title: Water traker
+  title: Water tracker
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  description: This is a documentation of Water traker website
+  description: This is a documentation of Water tracker website
 tags:
-  - name: Water traker
-    description: Operations about Water traker.
+  - name: Water tracker
+    description: Operations about Water tracker.
   - name: Auth
     description: Auth operations.
 servers:
   - url: https://watertraker-backend.onrender.com
-  - url: https://watertraker-backend.onrender.com/api/auth
 paths:
   /signup:
     post:
@@ -41,20 +40,21 @@ paths:
     patch:
       $ref: "../swagger/paths/user/waterRatePatch.yaml"
   /water:
-    get:
-      $ref: "../swagger/paths/water/get.yaml"
+    put:
+      $ref: "../swagger/paths/water/put.yaml"
     post:
       $ref: "../swagger/paths/water/post.yaml"
   /water/{id}:
-    get:
-      $ref: "../swagger/paths/water/getById.yaml"
-    put:
-      $ref: "../swagger/paths/water/put.yaml"
     delete:
       $ref: "../swagger/paths/water/delete.yaml"
-  /water/month/{id}:
+
+  /water/today:
     get:
-      $ref: "../swagger/paths/water/getMothById.yaml"
+      $ref: "../swagger/paths/water/getTodaysWater.yaml"
+
+  /water/month:
+    get:
+      $ref: "../swagger/paths/water/getMoth.yaml"
 components:
   securitySchemes:
     bearerAuth:

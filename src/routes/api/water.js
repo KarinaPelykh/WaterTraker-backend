@@ -10,7 +10,6 @@ const validateWaterUpdate = validateBody(schemas.updateWaterRecordSchema);
 
 router.use(authenticate);
 
-// router.get("/", ctrl.getAll);
 router.post("/", validateWater, ctrl.addConsumedWater);
 router.put("/:id", isValid, validateWaterUpdate, ctrl.updateByID);
 router.delete("/:id", isValid, ctrl.deleteSign);

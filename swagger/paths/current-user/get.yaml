@@ -1,6 +1,6 @@
 tags:
   - Auth
-summary: signin current user without email and password
+summary: Signin current user without email and password
 operationId: signInCurrentUser
 description: Sign in current user
 security:
