@@ -6,7 +6,12 @@ const Water = require("../models/Water");
 const addConsumedWater = async (req, res) => {
   const { _id: owner } = req.user;
 
-  await Water.create({ ...req.body, owner });
+  const user = await User.findById(owner);
+  if (!user || !user.water) {
+    throw HttpError(404);
+  }
+
+  await Water.create({ ...req.body, dailyGoal: user.water, owner });
   res.status(201).json("Success");
 };
 
@@ -54,7 +59,6 @@ const usedWaterByToday = async (req, res) => {
   res.json({
     percent: Math.round(percent),
     list: data,
-    dailyGoal: user.water,
   });
 };
 
@@ -86,7 +90,6 @@ const usedWaterByMonth = async (req, res) => {
     const percent = (liters / Number(user.water)) * 100;
 
     result.push({
-      dailyNormWater: user.water,
       percent: Math.round(percent),
       list: data,
       date: `${day},${months[monthIndex]}`,
