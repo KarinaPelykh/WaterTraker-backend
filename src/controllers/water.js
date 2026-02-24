@@ -51,7 +51,11 @@ const usedWaterByToday = async (req, res) => {
   }
 
   const percent = (liters / Number(user.water)) * 100;
-  res.json({ percent: Math.round(percent), list: data });
+  res.json({
+    percent: Math.round(percent),
+    list: data,
+    dailyGoal: user.water,
+  });
 };
 
 const usedWaterByMonth = async (req, res) => {
